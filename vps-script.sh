@@ -218,11 +218,48 @@ echo -e "------------------------------------------------ \n"
 	echo ------------------------------------------------ >> $LOGFILE 2>&1
 	echo "--- 9. NEOFETCH Install -----------------------" >> $LOGFILE 2>&1
 	echo ------------------------------------------------ >> $LOGFILE 2>&1	
-
+	echo -e ' \n'
+	
+# Chech if installed
+	nefotech --version > /dev/null 2>&1
+	if [ $? -eq 0 ] 
+	then
+		echo "SKIPPING : NEOFETCH already installed. Moving on... ! "
+		echo "`date +%d.%m.%Y_%H:%M:%S` : SKIPPING : NEOFETCH already installed. Moving on... ! " >> $LOGFILE 2>&1
+	else 
+		echo " INFO : NEOFETCH NOT installed. Installing now... !"
+		echo "`date +%d.%m.%Y_%H:%M:%S` : INFO : NEOFETCH NOT installed. Installing now... ! " >> $LOGFILE 2>&1
+		add-apt-repository ppa:dawidd0811/neofetch >> $LOGFILE 2>&1
+		apt update >> $LOGFILE 2>&1
+		apt install neofetch >> $LOGFILE 2>&1
+		echo -e ' \n'
+			
+			# Adding NEOFETCH to MOTD
+			
+			if [ -e /etc/update-motd.d/59-neofetch ] 
+			then
+				echo " SKIPPING : NEOFETCH Already added to MOTD"
+				echo "`date +%d.%m.%Y_%H:%M:%S` : SKIPPING : NEOFETCH Already added to MOTD" >> $LOGFILE 2>&1
+			else	
+				echo " INFO : Adding NEOFETCH to MOTD"
+				echo "`date +%d.%m.%Y_%H:%M:%S` : INFO : Adding NEOFETCH to MOTD" >> $LOGFILE 2>&1
+				
+				add-apt-repository ppa:dawidd0811/neofetch >> $LOGFILE 2>&1
+				apt update >> $LOGFILE 2>&1
+				apt install neofetch >> $LOGFILE 2>&1
+				
+				echo "#!/bin/bash" >> /etc/update-motd.d/59-neofetch >> $LOGFILE 2>&1
+				echo "echo -e ' \n'" >> /etc/update-motd.d/59-neofetch >> $LOGFILE 2>&1
+				echo neofetch >> /etc/update-motd.d/59-neofetch >> $LOGFILE 2>&1
+				echo "echo -e ' \n'" >> /etc/update-motd.d/59-neofetch >> $LOGFILE 2>&1
+				
+				chmod +x /etc/update-motd.d/59-neofetch >> $LOGFILE 2>&1			
+			fi
+	
+	fi
+	
 	# Commands
-	add-apt-repository ppa:dawidd0811/neofetch >> $LOGFILE 2>&1
-	apt update > /dev/null 2>&1
-	apt install neofetch >> $LOGFILE 2>&1
+
 	
 	echo -e "------------------------------------------------ \n"
 
