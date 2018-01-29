@@ -186,12 +186,9 @@ echo -e "------------------------------------------------ \n"
 				echo "Firewall NOT Enabled"
 				
 			fi
-	
 	fi
 
 
-	
-	
 echo -e "------------------------------------------------ \n"
 
 #################### 
@@ -222,10 +219,9 @@ echo -e "------------------------------------------------ \n"
 	echo ------------------------------------------------ >> $LOGFILE 2>&1
 	echo "--- 9. NEOFETCH Install -----------------------" >> $LOGFILE 2>&1
 	echo ------------------------------------------------ >> $LOGFILE 2>&1	
-	echo -e ' \n'
 	
 # Chech if installed
-	neofetch --version > /dev/null 2>&1
+	neofetch > /dev/null 2>&1
 	if [ $? -eq 0 ] 
 	then
 		echo "SKIPPING : NEOFETCH already installed. Moving on... ! "
@@ -239,7 +235,6 @@ echo -e "------------------------------------------------ \n"
 		echo -e ' \n'
 			
 			# Adding NEOFETCH to MOTD
-			
 			if [ -e /etc/update-motd.d/59-neofetch ] 
 			then
 				echo " SKIPPING : NEOFETCH Already added to MOTD"
