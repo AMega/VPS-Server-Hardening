@@ -69,7 +69,7 @@ echo -e "------------------------------------------------ \n"
 	echo ------------------------------------------------ >> $LOGFILE 2>&1
 	echo -e "\n"
 
-read -p "Enter New USERNAME" uname
+read -p "Enter New USERNAME:  " uname
 
 id -u $uname >> $LOGFILE > /dev/null 2>&1
 if [ $? -eq 0 ] 
@@ -163,29 +163,33 @@ echo -e "------------------------------------------------ \n"
 		echo "-- INFO : UFW NOT installed. Installing now... !"
 		echo "`date +%d.%m.%Y_%H:%M:%S` : INFO : UFW NOT installed. Installing now... ! " >> $LOGFILE 2>&1
 		apt-get install ufw -y >> $LOGFILE 2>&1
-	fi
-
-ufw allow 80 >> $LOGFILE 2>&1
-ufw allow 443 >> $LOGFILE 2>&1
-ufw allow 55522 >> $LOGFILE 2>&1
-ufw default allow outgoing >> $LOGFILE 2>&1
-ufw default deny incoming >> $LOGFILE 2>&1
-
-echo "Current Firewall Rules:"
-echo ------------------------------------------------
-ufw show added
-echo -e "------------------------------------------------ \n"
-
-
-read -p "Enable the Firewall ? [y/n]" fwenable 
-
-	if [ $fwenable = "Y" ] || [ $fwenable = "y" ]
-	then
-		ufw enable
-	else
-		echo "Firewall NOT Enabled"
 		
+		# Add fw rules
+		ufw allow 80 >> $LOGFILE 2>&1
+		ufw allow 443 >> $LOGFILE 2>&1
+		ufw allow 55522 >> $LOGFILE 2>&1
+		ufw default allow outgoing >> $LOGFILE 2>&1
+		ufw default deny incoming >> $LOGFILE 2>&1
+
+		echo "Current Firewall Rules:"
+		echo ------------------------------------------------
+		ufw show added
+		echo -e "------------------------------------------------ \n"
+
+		# Enable firewall question
+		read -p "Enable the Firewall ? [y/n]" fwenable 
+
+			if [ $fwenable = "Y" ] || [ $fwenable = "y" ]
+			then
+				ufw enable
+			else
+				echo "Firewall NOT Enabled"
+				
+			fi
+	
 	fi
+
+
 	
 	
 echo -e "------------------------------------------------ \n"
@@ -221,7 +225,7 @@ echo -e "------------------------------------------------ \n"
 	echo -e ' \n'
 	
 # Chech if installed
-	nefotech --version > /dev/null 2>&1
+	nefotech --version >> $LOGFILE 2>&1
 	if [ $? -eq 0 ] 
 	then
 		echo "SKIPPING : NEOFETCH already installed. Moving on... ! "
@@ -229,9 +233,9 @@ echo -e "------------------------------------------------ \n"
 	else 
 		echo " INFO : NEOFETCH NOT installed. Installing now... !"
 		echo "`date +%d.%m.%Y_%H:%M:%S` : INFO : NEOFETCH NOT installed. Installing now... ! " >> $LOGFILE 2>&1
-		add-apt-repository ppa:dawidd0811/neofetch >> $LOGFILE 2>&1
-		apt update >> $LOGFILE 2>&1
-		apt install neofetch >> $LOGFILE 2>&1
+		add-apt-repository ppa:dawidd0811/neofetch
+		apt update
+		apt install neofetch
 		echo -e ' \n'
 			
 			# Adding NEOFETCH to MOTD
