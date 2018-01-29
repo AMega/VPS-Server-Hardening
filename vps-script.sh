@@ -157,10 +157,10 @@ echo -e "------------------------------------------------ \n"
 	ufw status > /dev/null 2>&1
 	if [ $? -eq 0 ] 
 	then
-		echo "-- SKIPPING : UFW already installed. Moving on... ! "
-		echo "`date +%d.%m.%Y_%H:%M:%S` : SKIPPING : UFW already installed. Moving on... ! " >> $LOGFILE 2>&1
+		echo " SKIPPING : UFW already installed."
+		echo "`date +%d.%m.%Y_%H:%M:%S` : SKIPPING : UFW already installed." >> $LOGFILE 2>&1
 	else 
-		echo "-- INFO : UFW NOT installed. Installing now... !"
+		echo " INFO : UFW NOT installed. Installing now... !"
 		echo "`date +%d.%m.%Y_%H:%M:%S` : INFO : UFW NOT installed. Installing now... ! " >> $LOGFILE 2>&1
 		apt-get install ufw -y >> $LOGFILE 2>&1
 		
@@ -225,7 +225,7 @@ echo -e "------------------------------------------------ \n"
 	echo -e ' \n'
 	
 # Chech if installed
-	nefotech --version >> $LOGFILE 2>&1
+	neofetch --version > /dev/null 2>&1
 	if [ $? -eq 0 ] 
 	then
 		echo "SKIPPING : NEOFETCH already installed. Moving on... ! "
