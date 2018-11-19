@@ -1,4 +1,4 @@
-# AKcryptoGUY
+## AKcryptoGUY
 
 The VPS Server Hardening script is a script designed to be run on new VPS deployments which will simplify a lot of the basic hardening that can be done to protect your server.
 
@@ -47,9 +47,9 @@ Reserved for Future use
 
 Reserved for Future use
 
-## Social and Contact
+# Social and Contact
 
-# Follow AKcryptoGUY online: <br/>
+## Follow AKcryptoGUY online: <br/>
 Medium → https://medium.com/@AKcryptoGUY <br/>
 Twitter → https://twitter.com/AKcryptoGUY <br/>
 Facebook → https://www.facebook.com/AKcryptoGUY <br/>
