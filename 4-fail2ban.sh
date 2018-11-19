@@ -2,7 +2,6 @@
 # Script to Harden Security on Ubuntu
 # 
 
-# 0. UPDATE AND UPGRADE
 # 1. USER SETUP / Add new user (amega) / Add to sudo group
 # 2. SSH CONFIG / Change SSH port , disable root login
 # 3. CONFIG FIREWALL / UFW - add IN rules, default IN / OUT rules, Enable firewall
@@ -28,7 +27,7 @@ echo -e "------------------------------------------------ \n" >> $LOGFILE 2>&1
 
 
 ##########################
-## 0. UPDATE & UPGRADE ###
+## 1. UPDATE & UPGRADE ###
 ##########################
 echo ------------------------------------------------
 echo "--- 1. UPDATE and UPGRADE ------------------------"
@@ -91,30 +90,19 @@ echo -e "------------------------------------------------ \n"
 	
 	
 #################### 
-##  2. SSH CONFIG ##
+##  3. SSH CONFIG ##
 ####################
 echo ------------------------------------------------
 echo "--- 3. SSH CONFIG ------------------------------"
-
 echo -e "------------------------------------------------ \n"
 	# Add to log
 	echo ------------------------------------------------ >> $LOGFILE 2>&1
 	echo "--- 3. SSH CONFIG ------------------------------" >> $LOGFILE 2>&1
 	echo ------------------------------------------------ >> $LOGFILE 2>&1	
-
-# Prompt for custom SSH port between 11000 and 65535
-function collect_sshd {
-	read -p "Please enter a custom SSH port (between 11000 and 65535):  " SSHPORT
-        # check if SSHPORT is valid
-	if [ $SSHPORT -gt 10999 ] && [ $SSHPORT -lt 65536 ]
-	then echo "** Valid ssh port detected **"
-	else echo "Invalid SSH port entered, try again"
-	collect_sshd
-	fi
-}
-
-collect_sshd
-echo moving on... SSH Port will be set to $SSHPORT
+	
+# Prompt for custom SSH port between 49152 and 65535
+read -p "Enter a custom SSH port (between 49152 and 65535):  " SSHPORT
+# NEED TO CHECK SSHPORT FOR VALID INTEGER
 	
 	# Take a backup of the existing config
 cat /etc/ssh/sshd_config > /etc/ssh/sshd_config.$(date +%F_%R).bak >> $LOGFILE 2>&1
