@@ -12,7 +12,7 @@ TRON: TLsday62mhM67Sv5G5Z5Ju66TezJuVFbiw
 
 Please feel free to use my referral link when creating your VPS account at Vultr to build some good karma. <a href="https://www.vultr.com/?ref=7568060"><img src="https://www.vultr.com/media/banner_2.png" width="468" height="60"></a>
 
-Digital Ocean is pretty generous as well, and give you a free credit of $100 to use while testing the site to decide if it is right for you.  <a https://www.digitalocean.com/?refcode=bd6020302487 href="https://m.do.co/c/bd6020302487"> 
+Digital Ocean is very generous as well, and give you a free credit of $100 to use while testing the site to decide if it is right for you.   https://www.digitalocean.com/?refcode=bd6020302487
 
 ## About
 
